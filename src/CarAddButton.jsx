@@ -1,17 +1,11 @@
 import React, {useContext} from 'react';
 import {CarsDispatch} from './containers/CarListContainer';
-// import carsReducer from './hooks/CarsReducer';
+import CarsService from './services/CarsService';
 
 const CarAddButton = () => {
-  const dispatch = useContext(CarsDispatch)
+  const dispatch = useContext(CarsDispatch);
   return (
-    <button onClick={e=>dispatch({type:'ADD_CAR',payload:{
-      manufacturer: 'Audi',
-      name: 'R8 V10 Plus',
-      power: 610,
-      weight: 1670,
-      acceleration: 3.2,
-    }})}>Add Car</button>
+    <button onClick={()=>CarsService.getCar().then(car => dispatch({type:'ADD_CAR',payload:car}))}>Add Car</button>
   )
 }
 
